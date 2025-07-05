@@ -1,7 +1,10 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import dynamic from "next/dynamic"
-import { Facebook, Instagram, Twitter, Youtube, Menu } from "lucide-react"
+import { useState } from "react"
+import { Facebook, Instagram, Twitter, Youtube, Menu, X } from "lucide-react"
 
 const HeroSection = dynamic(() => import("@/components/sections/hero-section"))
 const ServiceTimesSection = dynamic(() => import("@/components/sections/service-times-section"))
@@ -17,6 +20,25 @@ const ContactSection = dynamic(() => import("@/components/sections/contact-secti
 const NewsletterSection = dynamic(() => import("@/components/sections/newsletter-section"))
 
 export default function HomePage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
+  const navigationLinks = [
+    { href: "/", label: "Home" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/events", label: "Events" },
+    { href: "/sermons", label: "Sermons" },
+    { href: "/blog", label: "Blog" },
+    { href: "/prayer-request", label: "Prayer" },
+  ]
+
   return (
     <div className="min-h-screen">
       {/* Enhanced Navigation */}
@@ -40,30 +62,127 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {[
-                { href: "/", label: "Home" },
-                { href: "/gallery", label: "Gallery" },
-                { href: "/events", label: "Events" },
-                { href: "/sermons", label: "Sermons" },
-                { href: "/blog", label: "Blog" },
-                { href: "/prayer-request", label: "Prayer" },
-                { href: "/giving", label: "Give" },
-              ].map((l) => (
+              {navigationLinks.map((link) => (
                 <Link
-                  key={l.href}
-                  href={l.href}
+                  key={link.href}
+                  href={link.href}
                   className="text-gray-900 hover:text-gray-600 font-bold transition-all duration-200 hover:scale-105 transform relative group"
                 >
-                  {l.label}
+                  {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
                 </Link>
               ))}
             </div>
 
-            <button className="md:hidden p-3 rounded-xl bg-gradient-to-r from-purple-100 to-pink-100 text-gray-800 hover:from-purple-200 hover:to-pink-200 transition-all duration-200 shadow-lg">
-              <Menu className="w-6 h-6" />
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMobileMenu}
+              className="md:hidden p-3 rounded-xl bg-gradient-to-r from-purple-100 to-pink-100 text-gray-800 hover:from-purple-200 hover:to-pink-200 transition-all duration-200 shadow-lg relative z-50"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden" onClick={closeMobileMenu} />
+        )}
+
+        {/* Mobile Menu */}
+        <div
+          className={`
+          fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-2xl shadow-2xl transform transition-transform duration-300 ease-in-out z-40 md:hidden
+          ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}
+        `}
+        >
+          <div className="p-6 pt-24">
+            {/* Mobile Logo */}
+            <div className="flex items-center space-x-4 mb-8 pb-6 border-b border-gray-200">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-md opacity-30 scale-110"></div>
+                <Image
+                  src="/logo.png"
+                  alt="Arise and Shine CCI Thika Logo"
+                  width={50}
+                  height={50}
+                  className="rounded-full shadow-lg ring-4 ring-white/80 relative z-10"
+                />
+              </div>
+              <div className="flex flex-col">
+                <h2 className="text-lg font-black text-gray-900 leading-tight">Arise and Shine</h2>
+                <p className="text-sm font-semibold text-gray-600 leading-tight">CCI Thika</p>
+              </div>
+            </div>
+
+            {/* Mobile Navigation Links */}
+            <nav className="space-y-4">
+              {navigationLinks.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMobileMenu}
+                  className={`
+                    block px-6 py-4 rounded-2xl text-gray-900 hover:text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg
+                    ${
+                      index % 2 === 0
+                        ? "hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-600"
+                        : "hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500"
+                    }
+                    animate-fade-in-up animation-delay-${index * 100}
+                  `}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-2 h-2 rounded-full ${index % 2 === 0 ? "bg-purple-400" : "bg-pink-400"}`}></div>
+                    <span>{link.label}</span>
+                  </div>
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile Contact Info */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">Contact Us</h3>
+              <div className="space-y-3 text-sm text-gray-600">
+                <p className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <span>+254 XXX XXX XXX</span>
+                </p>
+                <p className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <span>info@ariseshinecci.org</span>
+                </p>
+                <p className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <span>Thika, Kiambu County</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Mobile Social Links */}
+            <div className="mt-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">Follow Us</h3>
+              <div className="flex space-x-3">
+                {[
+                  { Icon: Facebook, color: "bg-blue-600" },
+                  { Icon: Instagram, color: "bg-pink-600" },
+                  { Icon: Twitter, color: "bg-blue-400" },
+                  { Icon: Youtube, color: "bg-red-600" },
+                ].map(({ Icon, color }, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center text-white shadow-lg hover:scale-110 transform transition-all duration-300`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </nav>
