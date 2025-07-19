@@ -1,0 +1,24 @@
+[
+  {
+    "id": "walking-in-faith-2024-12-15",
+    "title": "Walking in Faith",
+    "date": "2024-12-15",
+    "description": "A powerful message about trusting God in uncertain times and walking by faith, not by sight.",
+    "youtubeId": "dQw4w9WgXcQ",
+    "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/sermons/walking-in-faith.jpg",
+    "preacher": "Pastor John Doe",
+    "series": "Faith Series",
+    "tags": ["faith", "trust", "spiritual growth"]
+  },
+  {
+    "id": "love-in-action-2024-12-08",
+    "title": "Love in Action",
+    "date": "2024-12-08",
+    "description": "Exploring how we can demonstrate God's love through our actions and service to others.",
+    "youtubeId": "dQw4w9WgXcQ",
+    "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/sermons/love-in-action.jpg",
+    "preacher": "Pastor Jane Smith",
+    "series": "Love Series",
+    "tags": ["love", "service", "community"]
+  }
+]

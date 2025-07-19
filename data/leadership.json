@@ -1,0 +1,14 @@
+[
+  {
+    "id": "pastor-john-doe",
+    "name": "Pastor John Doe",
+    "role": "Senior Pastor",
+    "bio": "Pastor John has been faithfully serving our congregation for over 15 years. His heart for God's people and passion for biblical teaching has helped shape our church into a thriving community of believers.",
+    "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/leadership/pastor-john-doe.jpg",
+    "contact": {
+      "email": "pastor.john@cciAriseAndShine.com",
+      "phone": "+254 XXX XXX XXX",
+      "office": "Church Office, Main Building"
+    }
+  }
+]

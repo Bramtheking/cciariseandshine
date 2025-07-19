@@ -1,0 +1,12 @@
+[
+  {
+    "id": "christmas-service-2024",
+    "title": "Christmas Service 2024",
+    "date": "2024-12-25",
+    "type": "image",
+    "url": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/gallery/christmas-service-2024.jpg",
+    "thumbnail": "https://res.cloudinary.com/your-cloud-name/image/upload/c_thumb,w_300,h_200/v1/gallery/christmas-service-2024.jpg",
+    "description": "Our beautiful Christmas service celebration",
+    "tags": ["christmas", "service", "celebration"]
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "youth-ministry",
+    "title": "Youth Ministry",
+    "description": "Empowering young people to arise and shine for Christ",
+    "fullDescription": "Our Youth Ministry is dedicated to nurturing the spiritual growth of young people aged 13-25...",
+    "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/ministries/youth-ministry.jpg",
+    "leader": "Pastor Jane Smith",
+    "contact": {
+      "email": "youth@cciAriseAndShine.com",
+      "phone": "+254 XXX XXX XXX",
+      "meetingTime": "Wednesdays 7:00 PM",
+      "location": "Youth Hall"
+    },
+    "activities": ["Weekly Bible Study", "Youth Worship Nights", "Community Service Projects"]
+  }
+]
